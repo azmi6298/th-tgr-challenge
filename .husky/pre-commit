@@ -1,0 +1,10 @@
+# check prettier
+npx prettier . --check
+
+# check TS compiler
+npx tsc
+
+# check success build
+npm run build
+
+
