@@ -1,6 +1,9 @@
 # check prettier
 npx prettier . --check
 
+# check jest
+npm test
+
 # check TS compiler
 npx tsc
 
