@@ -1,0 +1,7 @@
+.header {
+  @apply bg-[#281E9B] px-[20px] py-[10px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)];
+}
+
+.header__title {
+  @apply text-2xl font-bold text-[#FFFFFF];
+}

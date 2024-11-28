@@ -1,0 +1,15 @@
+.filter {
+  @apply flex items-center gap-x-[10px] p-[10px] font-bold;
+}
+
+.filter__title {
+  @apply text-xs text-[#474747];
+}
+
+.filter__badge {
+  @apply rounded-[100px] bg-[#E8E2E2] px-[15px] py-[5px] text-xs text-[#4D4D52];
+}
+
+.filter__badge--selected {
+  @apply rounded-[100px] bg-[#D2E3DF] px-[15px] py-[5px] text-xs text-[#004736];
+}

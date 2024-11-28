@@ -1,0 +1,27 @@
+.card {
+  @apply flex h-[69px] items-start gap-[10px] bg-[#FFFFFF] p-[10px];
+}
+
+.card__checkbox {
+  @apply p-[10px];
+}
+
+.card__main {
+  @apply flex flex-1 flex-col gap-[8px] px-[10px];
+}
+
+.card__title {
+  @apply text-lg font-bold text-[#2D2D2D];
+}
+
+.card__title--checked {
+  @apply text-lg font-bold text-[#9D9D9D] line-through;
+}
+
+.card__subtitle {
+  @apply text-xs font-normal text-[#2D2D2D];
+}
+
+.card__datetime {
+  @apply p-[10px] text-xs font-normal text-[#1E1E1E];
+}
