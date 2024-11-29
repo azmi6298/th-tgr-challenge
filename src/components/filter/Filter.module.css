@@ -1,5 +1,5 @@
 .filter {
-  @apply flex items-center gap-x-[10px] p-[10px] font-bold;
+  @apply flex flex-wrap items-center gap-[10px] p-[10px] font-bold;
 }
 
 .filter__title {

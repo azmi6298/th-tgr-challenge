@@ -2,32 +2,28 @@
 
 import Card from '@/components/card/Card';
 import Filter from '@/components/filter/Filter';
-import Header from '@/components/header/Header';
+import Layout from '@/components/layout/Layout';
 
 export default function Home() {
   return (
-    <>
-      <Header title="To Do" />
+    <Layout>
+      <Filter />
 
-      <main className="flex flex-col gap-[10px] px-6 py-9">
-        <Filter />
+      <Card
+        title="Buy a"
+        subtitle="Personal"
+        datetime="2024/11/3 11:24"
+        isChecked={true}
+        onChecked={() => {}}
+      />
 
-        <Card
-          title="Buy a"
-          subtitle="Personal"
-          datetime="2024/11/3 11:24"
-          isChecked={true}
-          onChecked={() => {}}
-        />
-
-        <Card
-          title="Buy b"
-          subtitle="Personal"
-          datetime="2024/11/3 11:24"
-          isChecked={false}
-          onChecked={() => {}}
-        />
-      </main>
-    </>
+      <Card
+        title="Buy b"
+        subtitle="Personal"
+        datetime="2024/11/3 11:24"
+        isChecked={false}
+        onChecked={() => {}}
+      />
+    </Layout>
   );
 }
