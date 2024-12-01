@@ -19,7 +19,7 @@
 }
 
 .card__subtitle {
-  @apply text-xs font-normal text-[#2D2D2D];
+  @apply text-xs font-normal capitalize text-[#2D2D2D];
 }
 
 .card__datetime {
