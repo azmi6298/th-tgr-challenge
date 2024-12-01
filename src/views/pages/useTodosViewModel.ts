@@ -1,57 +1,53 @@
 import { CategoryType, Todo } from '@/libs/entities/todo';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 interface UseTodosViewModelProps {
   todos: Todo[];
 }
 
-export default function useTodosViewModel(props: UseTodosViewModelProps) {
-  const [todos, setTodos] = useState<Todo[]>();
-  const [filteredTodos, setFilteredTodos] = useState<Todo[]>();
+export default function useTodosViewModel({
+  todos: initialTodos,
+}: UseTodosViewModelProps) {
+  const [todos, setTodos] = useState<Todo[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<CategoryType>();
 
-  useEffect(() => {
-    setTodos(sortTodos(props.todos));
-  }, [props.todos]);
+  const sortedTodos = useMemo(
+    () =>
+      todos.slice().sort((a, b) => {
+        if (a.isCompleted !== b.isCompleted) {
+          return Number(a.isCompleted) - Number(b.isCompleted);
+        }
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+      }),
+    [todos],
+  );
 
-  useEffect(() => {
-    if (todos) {
-      setFilteredTodos(sortTodos(filterTodosByCategory(todos, selectedFilter)));
-    }
-  }, [todos, selectedFilter]);
+  const filteredTodos = useMemo(
+    () =>
+      selectedFilter
+        ? sortedTodos.filter((todo) => todo.category === selectedFilter)
+        : sortedTodos,
+    [sortedTodos, selectedFilter],
+  );
 
-  function sortTodos(todos: Todo[]): Todo[] {
-    return todos.sort((a, b) => {
-      if (a.isCompleted !== b.isCompleted) {
-        return Number(a.isCompleted) - Number(b.isCompleted);
-      }
-      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-    });
-  }
-
-  function filterTodosByCategory(
-    todos: Todo[],
-    category: CategoryType | undefined,
-  ): Todo[] {
-    return category
-      ? todos.filter((todo) => todo.category === category)
-      : todos;
-  }
-
-  function toggleTodoCompletion(id: string) {
+  const toggleTodoCompletion = useCallback((id: string) => {
     setTodos((prevTodos) =>
-      prevTodos?.map((todo) =>
+      prevTodos.map((todo) =>
         todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo,
       ),
     );
-  }
+  }, []);
+
+  useEffect(() => {
+    setTodos(initialTodos);
+  }, [initialTodos]);
 
   return {
-    todos: filteredTodos || todos,
-
+    todos: filteredTodos,
     selectedFilter,
     setSelectedFilter,
-
     toggleTodoCompletion,
   };
 }
