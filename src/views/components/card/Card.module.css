@@ -3,7 +3,7 @@
 }
 
 .card__checkbox {
-  @apply p-[10px];
+  @apply h-[14px] w-[14px] p-[10px] accent-[#1755FF];
 }
 
 .card__main {

@@ -26,6 +26,7 @@ export default function Card(props: CardProps) {
           type="checkbox"
           checked={props.isChecked}
           onChange={props.onChecked}
+          className={styles.card__checkbox}
         />
       </div>
       <div className={styles.card__main}>
