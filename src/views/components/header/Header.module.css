@@ -3,5 +3,5 @@
 }
 
 .header__title {
-  @apply text-2xl font-bold text-[#FFFFFF];
+  @apply text-[24px] font-bold text-[#FFFFFF] md:text-[36px];
 }
