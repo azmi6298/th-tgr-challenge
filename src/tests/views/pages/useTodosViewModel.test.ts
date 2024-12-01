@@ -137,4 +137,126 @@ describe('test useTodosViewModel', () => {
       expect(result.current.todos).toStrictEqual(expectedResult);
     });
   });
+
+  describe('should toggle completion of task', () => {
+    it('should toggle isCompleted from false to true', () => {
+      const mockTodos: Todo[] = [
+        {
+          id: '1',
+          task: 'Task A',
+          category: 'work',
+          createdAt: new Date('2024-10-29T14:15:00.000Z'),
+          isCompleted: false,
+        },
+        {
+          id: '2',
+          task: 'Task B',
+          category: 'personal',
+          createdAt: new Date('2024-10-28T08:00:00.000Z'),
+          isCompleted: false,
+        },
+        {
+          id: '3',
+          task: 'Task C',
+          category: 'work',
+          createdAt: new Date('2024-10-30T10:30:00.000Z'),
+          isCompleted: false,
+        },
+      ];
+
+      const { result } = renderHook(() =>
+        useTodosViewModel({ todos: mockTodos }),
+      );
+
+      act(() => {
+        result.current.toggleTodoCompletion('1');
+      });
+
+      const expectedResult = [
+        {
+          id: '3',
+          task: 'Task C',
+          category: 'work',
+          createdAt: new Date('2024-10-30T10:30:00.000Z'),
+          isCompleted: false,
+        },
+        {
+          id: '2',
+          task: 'Task B',
+          category: 'personal',
+          createdAt: new Date('2024-10-28T08:00:00.000Z'),
+          isCompleted: false,
+        },
+        {
+          id: '1',
+          task: 'Task A',
+          category: 'work',
+          createdAt: new Date('2024-10-29T14:15:00.000Z'),
+          isCompleted: true,
+        },
+      ];
+
+      expect(result.current.todos).toStrictEqual(expectedResult);
+    });
+
+    it('should toggle isCompleted from true to false', () => {
+      const mockTodos: Todo[] = [
+        {
+          id: '1',
+          task: 'Task A',
+          category: 'work',
+          createdAt: new Date('2024-10-29T14:15:00.000Z'),
+          isCompleted: false,
+        },
+        {
+          id: '2',
+          task: 'Task B',
+          category: 'personal',
+          createdAt: new Date('2024-10-28T08:00:00.000Z'),
+          isCompleted: false,
+        },
+        {
+          id: '3',
+          task: 'Task C',
+          category: 'work',
+          createdAt: new Date('2024-10-30T10:30:00.000Z'),
+          isCompleted: true,
+        },
+      ];
+
+      const { result } = renderHook(() =>
+        useTodosViewModel({ todos: mockTodos }),
+      );
+
+      act(() => {
+        result.current.toggleTodoCompletion('3');
+      });
+
+      const expectedResult = [
+        {
+          id: '3',
+          task: 'Task C',
+          category: 'work',
+          createdAt: new Date('2024-10-30T10:30:00.000Z'),
+          isCompleted: false,
+        },
+        {
+          id: '1',
+          task: 'Task A',
+          category: 'work',
+          createdAt: new Date('2024-10-29T14:15:00.000Z'),
+          isCompleted: false,
+        },
+        {
+          id: '2',
+          task: 'Task B',
+          category: 'personal',
+          createdAt: new Date('2024-10-28T08:00:00.000Z'),
+          isCompleted: false,
+        },
+      ];
+
+      expect(result.current.todos).toStrictEqual(expectedResult);
+    });
+  });
 });

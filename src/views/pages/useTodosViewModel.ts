@@ -16,7 +16,7 @@ export default function useTodosViewModel(props: UseTodosViewModelProps) {
 
   useEffect(() => {
     if (todos) {
-      setFilteredTodos(filterTodosByCategory(todos, selectedFilter));
+      setFilteredTodos(sortTodos(filterTodosByCategory(todos, selectedFilter)));
     }
   }, [todos, selectedFilter]);
 
@@ -38,9 +38,20 @@ export default function useTodosViewModel(props: UseTodosViewModelProps) {
       : todos;
   }
 
+  function toggleTodoCompletion(id: string) {
+    setTodos((prevTodos) =>
+      prevTodos?.map((todo) =>
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo,
+      ),
+    );
+  }
+
   return {
     todos: filteredTodos || todos,
+
     selectedFilter,
     setSelectedFilter,
+
+    toggleTodoCompletion,
   };
 }

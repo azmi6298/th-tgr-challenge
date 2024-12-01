@@ -10,9 +10,10 @@ interface TodosProps {
 }
 
 export default function Todos(props: TodosProps) {
-  const { todos, selectedFilter, setSelectedFilter } = useTodosViewModel({
-    todos: props.data,
-  });
+  const { todos, selectedFilter, setSelectedFilter, toggleTodoCompletion } =
+    useTodosViewModel({
+      todos: props.data,
+    });
 
   return (
     <>
@@ -28,7 +29,9 @@ export default function Todos(props: TodosProps) {
           subtitle={todo.category}
           datetime={todo.createdAt}
           isChecked={todo.isCompleted}
-          onChecked={() => {}}
+          onChecked={() => {
+            toggleTodoCompletion(todo.id);
+          }}
         />
       ))}
     </>
