@@ -9,7 +9,7 @@ export default function Layout(props: LayoutProps) {
   return (
     <>
       <Header />
-      <main className={styles.layout}>{props.children}</main>;
+      <main className={styles.layout}>{props.children}</main>
     </>
   );
 }

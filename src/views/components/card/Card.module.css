@@ -1,5 +1,5 @@
 .card {
-  @apply flex h-[69px] items-start gap-[10px] bg-[#FFFFFF] p-[10px];
+  @apply flex items-start gap-[10px] bg-[#FFFFFF] p-[10px];
 }
 
 .card__checkbox {
